@@ -72,7 +72,7 @@ class MyTripsPage extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const TripHistoryPage(),
+                                builder: (context) => TripHistoryPage(),
                               ),
                             );
                           },

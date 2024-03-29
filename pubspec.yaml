@@ -39,6 +39,8 @@ dependencies:
   google_fonts: ^6.2.0
   pdf: ^3.10.8
   google_maps_flutter: ^2.6.0
+  cloud_firestore: ^4.15.10
+  intl: ^0.19.0
 
 dev_dependencies:
   flutter_test:
