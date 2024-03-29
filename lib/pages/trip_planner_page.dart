@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 //import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 //import 'package:tripit/pages/my_trip_to_page.dart';
 import 'package:tripit/pages/budget_report_page.dart';
+
 
 class TripPlannerPage extends StatefulWidget {
   const TripPlannerPage({Key? key}) : super(key: key);
@@ -11,6 +13,30 @@ class TripPlannerPage extends StatefulWidget {
 }
 
 class _TripPlannerPageState extends State<TripPlannerPage> {
+
+  final _firestore = FirebaseFirestore.instance;
+  //final _auth = FirebaseAuth.instance;
+
+  ///upload
+  Future<void> upload(DateTime? startDate, DateTime? endDate, int numberOfAdults, int numberOfChildren,
+      String selectedTravelingMethod) async {
+    
+    //meka wadak na ain krhn
+    String idd = "$startDate $numberOfAdults";
+    //
+
+    final SinglePlan = _firestore.collection("triphistory").doc(idd);
+    SinglePlan.set({
+      'code': idd,//methnt holiday name eka
+      'StartingDate': startDate,
+      'Enddate': endDate,
+      'NoOfAdults': numberOfAdults,
+      'NoOfChildren': numberOfChildren,
+      'TravelMethod': selectedTravelingMethod,
+    });
+  }
+  /// end
+
   DateTime? _startDate;
   DateTime? _endDate;
   int _numberOfAdults = 1;
@@ -207,6 +233,9 @@ class _TripPlannerPageState extends State<TripPlannerPage> {
             SizedBox(height: 16),
             ElevatedButton(
   onPressed: () {
+
+    //upload(_startDate, _endDate, _numberOfAdults, _numberOfChildren, _selectedTravelingMethod);
+
     Navigator.push(
       context,
       MaterialPageRoute(

@@ -1,20 +1,54 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:tripit/pages/trip_history_page.dart';
 
 class BudgetReportPage extends StatelessWidget {
+  final _firestore = FirebaseFirestore.instance;
+  //final _auth = FirebaseAuth.instance;
+
+  ///upload
+  Future<void> submit(
+      DateTime? startDate,
+      DateTime? endDate,
+      int tripDuration,
+      int numberOfAdults,
+      int numberOfChildren,
+      String selectedTravelingMethod,
+      double totalExpenses) async {
+    //meka wadak na ain krhn
+    String idd = "$tripDuration $numberOfAdults";
+    //
+
+    final SingleBudgetReport =
+        _firestore.collection("fulltripdetails").doc(idd);
+    SingleBudgetReport.set({
+      'code': idd,
+      'StartDate':startDate,
+      'EndDate':endDate,
+      'Duration': tripDuration,
+      'NoOfAdults': numberOfAdults,
+      'NoOfChildren': numberOfChildren,
+      'TravelMethod': selectedTravelingMethod,
+      'Total': totalExpenses,
+    });
+  }
+
+  /// end
+
   final DateTime? startDate;
   final DateTime? endDate;
   final int numberOfAdults;
   final int numberOfChildren;
   final String selectedTravelingMethod;
 
-  const BudgetReportPage({
+  BudgetReportPage({
     Key? key,
     required this.startDate,
     required this.endDate,
     required this.numberOfAdults,
     required this.numberOfChildren,
-    required this.selectedTravelingMethod, required List<String> selectedActivities,
+    required this.selectedTravelingMethod,
+    required List<String> selectedActivities,
   }) : super(key: key);
 
   @override
@@ -61,12 +95,20 @@ class BudgetReportPage extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
+                    submit(
+                        startDate,
+                        endDate,
+                        tripDuration,
+                        numberOfAdults,
+                        numberOfChildren,
+                        selectedTravelingMethod,
+                        totalExpenses);
                     Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const TripHistoryPage(),
-                              ),
-                            );
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => TripHistoryPage(),
+                      ),
+                    );
                     // Add action for the third button
                   },
                   child: Text('Save'),
@@ -96,8 +138,10 @@ class BudgetReportPage extends StatelessWidget {
     double taxiExpensePerDay = 10000;
     double publicTransportExpensePerDay = 3000;
 
-    double totalAdultExpenses = adultExpensePerDay * tripDuration * numberOfAdults;
-    double totalChildExpenses = childExpensePerDay * tripDuration * numberOfChildren;
+    double totalAdultExpenses =
+        adultExpensePerDay * tripDuration * numberOfAdults;
+    double totalChildExpenses =
+        childExpensePerDay * tripDuration * numberOfChildren;
 
     double totalTravelingExpenses = 0.0;
     switch (selectedTravelingMethod) {
