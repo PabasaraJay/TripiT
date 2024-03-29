@@ -38,6 +38,7 @@ dependencies:
   firebase_core: ^2.27.2
   google_fonts: ^6.2.0
   pdf: ^3.10.8
+  google_maps_flutter: ^2.6.0
 
 dev_dependencies:
   flutter_test:
