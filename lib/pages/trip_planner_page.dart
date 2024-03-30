@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-//import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-//import 'package:tripit/pages/my_trip_to_page.dart';
 import 'package:tripit/pages/budget_report_page.dart';
-
 
 class TripPlannerPage extends StatefulWidget {
   const TripPlannerPage({Key? key}) : super(key: key);
@@ -13,21 +10,25 @@ class TripPlannerPage extends StatefulWidget {
 }
 
 class _TripPlannerPageState extends State<TripPlannerPage> {
-
   final _firestore = FirebaseFirestore.instance;
-  //final _auth = FirebaseAuth.instance;
 
-  ///upload
-  Future<void> upload(DateTime? startDate, DateTime? endDate, int numberOfAdults, int numberOfChildren,
-      String selectedTravelingMethod) async {
-    
-    //meka wadak na ain krhn
-    String idd = "$startDate $numberOfAdults";
-    //
+    Future<void> upload(
+    String tripName,
+    String destination,
+    DateTime? startDate,
+    DateTime? endDate,
+    int numberOfAdults,
+    int numberOfChildren,
+    String selectedTravelingMethod,
+  ) async {
+    // Generate an ID for the trip based on its details
+    String id = "$tripName";
 
-    final SinglePlan = _firestore.collection("triphistory").doc(idd);
-    SinglePlan.set({
-      'code': idd,//methnt holiday name eka
+    final tripDetails = _firestore.collection("triphistory").doc(id);
+    tripDetails.set({
+      'code': id,
+      'TripName': tripName,
+      'Destination': destination,
       'StartingDate': startDate,
       'Enddate': endDate,
       'NoOfAdults': numberOfAdults,
@@ -35,8 +36,9 @@ class _TripPlannerPageState extends State<TripPlannerPage> {
       'TravelMethod': selectedTravelingMethod,
     });
   }
-  /// end
 
+  String _tripName = '';
+  String _destination = '';
   DateTime? _startDate;
   DateTime? _endDate;
   int _numberOfAdults = 1;
@@ -46,7 +48,6 @@ class _TripPlannerPageState extends State<TripPlannerPage> {
   bool _surfingSelected = false;
   bool _campingSelected = false;
   bool _shoppingSelected = false;
-  bool _cuisineSelected = false;
   String _selectedTravelingMethod = 'Personal Vehicle';
   List<String> _travelingMethods = [
     'Personal Vehicle',
@@ -58,13 +59,45 @@ class _TripPlannerPageState extends State<TripPlannerPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Trip Planner'),
+        title: Text(
+          'Trip Planner',
+          style: TextStyle(color: Colors.white)
+          ),
+        backgroundColor: Colors.green,
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Text('Enter Your Trip Name:'),
+            SizedBox(height: 8),
+            TextFormField(
+              onChanged: (value) {
+                setState(() {
+                  _tripName = value;
+                });
+              },
+              decoration: InputDecoration(
+                hintText: 'Enter a Unique Name for Your Trip',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 16),
+            Text('Enter the Destination:'),
+            SizedBox(height: 8),
+            TextFormField(
+              onChanged: (value) {
+                setState(() {
+                  _destination = value;
+                });
+              },
+              decoration: InputDecoration(
+                hintText: 'Enter the destination',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 16),
             Text('Select Start Date:'),
             SizedBox(height: 8),
             ElevatedButton(
@@ -155,8 +188,8 @@ class _TripPlannerPageState extends State<TripPlannerPage> {
               ],
             ),
             SizedBox(height: 16),
+            // Activities checkboxes
             Text('Select Preferred Activities:'),
-            SizedBox(height: 8),
             CheckboxListTile(
               title: Text('Swimming'),
               value: _swimmingSelected,
@@ -202,15 +235,7 @@ class _TripPlannerPageState extends State<TripPlannerPage> {
                 });
               },
             ),
-            CheckboxListTile(
-              title: Text('Cuisine'),
-              value: _cuisineSelected,
-              onChanged: (value) {
-                setState(() {
-                  _cuisineSelected = value ?? false;
-                });
-              },
-            ),
+            // Additional CheckboxListTile widgets for other activities...
             SizedBox(height: 16),
             Text('Select Traveling Method:'),
             SizedBox(height: 8),
@@ -232,37 +257,43 @@ class _TripPlannerPageState extends State<TripPlannerPage> {
             ),
             SizedBox(height: 16),
             ElevatedButton(
-  onPressed: () {
+              onPressed: () {
+                /*upload(
+                  _tripName,
+                  _destination,
+                  _startDate,
+                  _endDate,
+                  _numberOfAdults,
+                  _numberOfChildren,
+                  _selectedTravelingMethod,
+                );*/
 
-    //upload(_startDate, _endDate, _numberOfAdults, _numberOfChildren, _selectedTravelingMethod);
-
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => BudgetReportPage(
-          startDate: _startDate,
-          endDate: _endDate,
-          numberOfAdults: _numberOfAdults,
-          numberOfChildren: _numberOfChildren,
-          selectedActivities: [
-            if (_swimmingSelected) 'Swimming',
-            if (_hikingSelected) 'Hiking',
-            if (_surfingSelected) 'Surfing',
-            if (_campingSelected) 'Camping',
-            if (_shoppingSelected) 'Shopping',
-            if (_cuisineSelected) 'Cuisine',
-          ],
-          selectedTravelingMethod: _selectedTravelingMethod,
-        ),
-      ),
-    );
-  },
-  child: Text('Submit'),
-),
-
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BudgetReportPage(
+                      tripName: _tripName,
+                      destination: _destination,
+                      startDate: _startDate,
+                      endDate: _endDate,
+                      numberOfAdults: _numberOfAdults,
+                      numberOfChildren: _numberOfChildren,
+                      selectedActivities: [
+                        if (_swimmingSelected) 'Swimming',
+                        // Add other selected activities here...
+                      ],
+                      selectedTravelingMethod: _selectedTravelingMethod,
+                    ),
+                  ),
+                );
+              },
+              child: Text('Submit'),
+            ),
           ],
         ),
       ),
     );
   }
+
+
 }

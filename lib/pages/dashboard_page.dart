@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tripit/pages/current_location_page.dart';
 import 'package:tripit/pages/my_trips_page.dart';
+import 'package:tripit/pages/user_location.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({Key? key}) : super(key: key);
@@ -66,7 +67,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const CurrentLocationPage(),
+                      builder: (context) => const UserLocationPage(),
                     ),
                   );
                 }, Icons.location_on),

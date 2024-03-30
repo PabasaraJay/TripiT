@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:tripit/pages/my_trips_page.dart';
 import 'package:tripit/pages/trip_history_page.dart';
 import 'package:intl/intl.dart';
 
@@ -23,7 +24,7 @@ class _TripDetailsState extends State<TripDetails> {
     code = widget.cd1;
   }
 
-String _formatDateAndTime(Timestamp timestamp) {
+  String _formatDateAndTime(Timestamp timestamp) {
     try {
       final dateTime = timestamp.toDate(); // Convert Timestamp to DateTime
       final dateFormat = DateFormat('yyyy-MM-dd HH:mm:ss'); // Customize format
@@ -60,297 +61,166 @@ String _formatDateAndTime(Timestamp timestamp) {
         if (snapshot.hasData) {
           var data = snapshot.data;
 
-          return
-
-              ///material app begin
-              MaterialApp(
-            // Application name
+          return MaterialApp(
             title: 'My Flutter App',
-            debugShowCheckedModeBanner: false, // Remove debug banner
-            home:
-
-                ///should be cut out from here
-                Container(
-              child: Scaffold(
-                appBar: AppBar(
-                  // preferredSize: Size.fromHeight(kToolbarHeight + 20),
-                  backgroundColor: Colors.black,
-                  leading: IconButton(
-                    icon: Icon(
-                      Icons.arrow_back_ios_new_outlined,
-                      color: Colors.white,
-                    ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
+            debugShowCheckedModeBanner: false,
+            home: Scaffold(
+              appBar: AppBar(
+                backgroundColor: Colors.green,
+                leading: IconButton(
+                  icon: Icon(
+                    Icons.arrow_back_ios_new_outlined,
+                    color: Colors.white,
                   ),
-
-                  title: Text(
-                    'Reservation Details',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  iconTheme: IconThemeData(color: Colors.white),
-
-                  //centerTitle: true,
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                 ),
-                body: Container(
-                  child: SafeArea(
-                    child: SingleChildScrollView(
-                      child: Container(
-                        child: Column(
-                          children: <Widget>[
-                            SizedBox(
-                              height: 30.0,
-                            ),
-
-                            SizedBox(
-                              height: 30.0,
-                            ),
-
-                            ///gem code
-                            Container(
-                              padding: EdgeInsets.only(left: 20),
-                              height: 60,
-                              width: double.infinity,
-                              color: Colors.black,
-                              child: Row(
-                                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  Expanded(
-                                    child: Text(
-                                      'Start Date :',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 18,
-                                          height: 2,
-                                          color: Colors.white),
-                                    ),
-                                  ),
-
-                                  ///place the gemcode variable here
-                                  Expanded(
-                                    child: Text(
-                                      '${_formatDateAndTime(data?['StartDate'])}',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 18,
-                                          height: 2,
-                                          color: Colors.white),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              height: 10.0,
-                            ),
-
-                            ///gem code end
-                            ///gem name
-                            ///gem name
-                            Container(
-                              padding: EdgeInsets.only(left: 20),
-                              height: 60,
-                              width: double.infinity,
-                              color: Colors.black,
-                              child: Row(
-                                children: <Widget>[
-                                  Expanded(
-                                    child: Text(
-                                      'End Date :',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 18,
-                                          height: 2,
-                                          color: Colors.white),
-                                    ),
-                                  ),
-
-                                  ///place the gem name variable here
-                                  Expanded(
-                                    child: Text(
-                                      '${_formatDateAndTime(data?['EndDate'])}',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 18,
-                                          // height: 6,
-                                          color: Colors.white),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              height: 10.0,
-                            ),
-
-                            ///gem code
-                            Container(
-                              padding: EdgeInsets.only(left: 20),
-                              height: 60,
-                              width: double.infinity,
-                              color: Colors.black,
-                              child: Row(
-                                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  Expanded(
-                                    child: Text(
-                                      'No Of Adults',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 18,
-                                          height: 2,
-                                          color: Colors.white),
-                                    ),
-                                  ),
-
-                                  ///place the gemcode variable here
-                                  Expanded(
-                                    child: Text(
-                                      '${data?['NoOfAdults']}',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 22,
-                                          height: 2,
-                                          color: Colors.white),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-
-                            SizedBox(
-                              height: 10.0,
-                            ),
-
-                            ///gem code
-                            Container(
-                              padding: EdgeInsets.only(left: 20),
-                              height: 60,
-                              width: double.infinity,
-                              color: Colors.black,
-                              child: Row(
-                                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  Expanded(
-                                    child: Text(
-                                      'No Of Children',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 18,
-                                          height: 2,
-                                          color: Colors.white),
-                                    ),
-                                  ),
-
-                                  ///place the gemcode variable here
-                                  Expanded(
-                                    child: Text(
-                                      '${data?['NoOfChildren']}',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 22,
-                                          height: 2,
-                                          color: Colors.white),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.only(left: 20),
-                              height: 60,
-                              width: double.infinity,
-                              color: Colors.black,
-                              child: Row(
-                                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  Expanded(
-                                    child: Text(
-                                      'Travel Method',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 18,
-                                          height: 2,
-                                          color: Colors.white),
-                                    ),
-                                  ),
-
-                                  ///place the gemcode variable here
-                                  Expanded(
-                                    child: Text(
-                                      '${data?['TravelMethod']}',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 22,
-                                          height: 2,
-                                          color: Colors.white),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                           /* Container(
-                              padding: EdgeInsets.only(left: 20),
-                              height: 60,
-                              width: double.infinity,
-                              color: AppColors.backgroundcolor,
-                              child: Row(
-                                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  Expanded(
-                                    child: Text(
-                                      'Activity 3',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 18,
-                                          height: 2,
-                                          color: Colors.white),
-                                    ),
-                                  ),
-
-                                  ///place the gemcode variable here
-                                  Expanded(
-                                    child: Text(
-                                      '${data?['Activity3']}',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 22,
-                                          height: 2,
-                                          color: Colors.white),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),*/
-
-                            ElevatedButton(
-                                onPressed: () {
-                                  FirebaseFirestore.instance
-                                      .collection('fulltripdetails')
-                                      .doc(code)
-                                      .delete();
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => TripHistoryPage()),
-                                  );
-                                },
-                                child: Text('Delete'))
-                          ],
+                title: Text(
+                  '${data?['TripName']}',
+                  style: TextStyle(color: Colors.white),
+                ),
+                iconTheme: IconThemeData(color: Colors.white),
+              ),
+              body: SafeArea(
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Trip Details
+                        Text(
+                          'Tour Details',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
+                        SizedBox(height: 10),
+                        // Trip Name
+                        //buildDataRow('Trip Name', '${data?['TripName']}'),
+                        // Destination
+                        buildDataRow('Destination', '${data?['Destination']}'),
+                        // Start Date
+                        buildDataRow('Start Date',
+                            _formatDateAndTime(data?['StartDate'])),
+                        // End Date
+                        buildDataRow(
+                            'End Date', _formatDateAndTime(data?['EndDate'])),
+                        // Travel Method
+                        buildDataRow(
+                            'Travel Method', '${data?['TravelMethod']}'),
+                        SizedBox(height: 20),
+                        // Budget Report
+                        // Budget Report
+                        Text(
+                          'Budget Report',
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blue, // Set text color to blue
+                          ),
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Colors.grey[
+                                200], // Set background color to light grey
+                            borderRadius:
+                                BorderRadius.circular(10), // Add border radius
+                            border: Border.all(
+                              color: Colors.blue, // Add border color
+                              width: 2, // Set border width
+                            ),
+                          ),
+                          padding: EdgeInsets.all(10),
+                          margin: EdgeInsets.symmetric(vertical: 10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              // No of Adults
+                              buildDataRow(
+                                  'No of Adults', '${data?['NoOfAdults']}'),
+                              // No of Children
+                              buildDataRow(
+                                  'No of Children', '${data?['NoOfChildren']}'),
+                              // Trip Duration
+                              buildDataRow(
+                                  'Trip Duration', '${data?['Duration']} days'),
+                              // Total Expenses
+                              buildDataRow('Total Expenses',
+                                  'LKR ${data?['Total'].toStringAsFixed(2)}'),
+                            ],
+                          ),
+                        ),
+
+                        SizedBox(height: 20),
+
+                        // Edit Button
+                        ElevatedButton(
+                          onPressed: () {
+                            // Add functionality to edit button
+                          },
+                          child: Text('Edit'),
+                        ),
+
+                        // Delete Button
+                        ElevatedButton(
+                          onPressed: () {
+                            FirebaseFirestore.instance
+                                .collection('fulltripdetails')
+                                .doc(code)
+                                .delete();
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => TripHistoryPage()),
+                            );
+                          },
+                          child: Text('Delete'),
+                        ),
+
+                        SizedBox(height: 10), // Add space between buttons
+                        
+                        //Home Screen Button
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => MyTripsPage(),
+                              ),
+                            ); // Navigate to home screen
+                          },
+                          child: Text('Go to Home Screen'),
+                        ),
+                      ],
                     ),
                   ),
                 ),
               ),
             ),
           );
-
-          /// materialapp end
         }
         return CircularProgressIndicator();
       },
     );
   }
+}
+
+Widget buildDataRow(String label, String value) {
+  return Container(
+    padding: EdgeInsets.symmetric(vertical: 8),
+    child: Row(
+      children: [
+        Text(
+          label + ': ',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Text(value),
+      ],
+    ),
+  );
 }

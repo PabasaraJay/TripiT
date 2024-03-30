@@ -17,7 +17,7 @@ class _CurrentLocationPageState extends State<CurrentLocationPage> {
       CameraPosition(target: LatLng(6.914683, 79.973162), zoom: 14.0);
 
   static const CameraPosition targetPosition = CameraPosition(
-      target: LatLng(3.914683, 82.973162),
+      target: LatLng(6.914704, 79.973124),
       zoom: 14.0,
       bearing: 192.0,
       tilt: 60);
@@ -37,14 +37,16 @@ class _CurrentLocationPageState extends State<CurrentLocationPage> {
         },
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
+        onPressed: () {
+          goToLake();
+        },
         label: const Text("To the Lake! "),
         icon: const Icon(Icons.directions_boat),
       ),
     );
   }
 
-  Future<void> goToLake() async{
+  Future<void> goToLake() async {
     final GoogleMapController controller = await _controller.future;
     controller.animateCamera(CameraUpdate.newCameraPosition(targetPosition));
   }

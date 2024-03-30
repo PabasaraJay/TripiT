@@ -4,10 +4,11 @@ import 'package:tripit/pages/trip_history_page.dart';
 
 class BudgetReportPage extends StatelessWidget {
   final _firestore = FirebaseFirestore.instance;
-  //final _auth = FirebaseAuth.instance;
 
   ///upload
   Future<void> submit(
+      String tripName, // Added parameter
+      String destination,
       DateTime? startDate,
       DateTime? endDate,
       int tripDuration,
@@ -16,15 +17,17 @@ class BudgetReportPage extends StatelessWidget {
       String selectedTravelingMethod,
       double totalExpenses) async {
     //meka wadak na ain krhn
-    String idd = "$tripDuration $numberOfAdults";
+    String idd = "$tripName";
     //
 
     final SingleBudgetReport =
         _firestore.collection("fulltripdetails").doc(idd);
     SingleBudgetReport.set({
       'code': idd,
-      'StartDate':startDate,
-      'EndDate':endDate,
+      'TripName': tripName, // Save tripName to Firestore
+      'Destination': destination, // Save destination to Firestore
+      'StartDate': startDate,
+      'EndDate': endDate,
       'Duration': tripDuration,
       'NoOfAdults': numberOfAdults,
       'NoOfChildren': numberOfChildren,
@@ -40,6 +43,8 @@ class BudgetReportPage extends StatelessWidget {
   final int numberOfAdults;
   final int numberOfChildren;
   final String selectedTravelingMethod;
+  final String tripName;
+  final String destination;
 
   BudgetReportPage({
     Key? key,
@@ -48,6 +53,8 @@ class BudgetReportPage extends StatelessWidget {
     required this.numberOfAdults,
     required this.numberOfChildren,
     required this.selectedTravelingMethod,
+    required this.tripName, // Added parameter
+    required this.destination,
     required List<String> selectedActivities,
   }) : super(key: key);
 
@@ -68,6 +75,10 @@ class BudgetReportPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Text('Trip Name: $tripName'), // Display tripName
+            SizedBox(height: 8),
+            Text('Destination: $destination'), // Display destination
+            SizedBox(height: 16),
             Text('Trip Duration: $tripDuration days'),
             SizedBox(height: 8),
             Text('Number of Adults: $numberOfAdults'),
@@ -96,6 +107,8 @@ class BudgetReportPage extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     submit(
+                        tripName,
+                        destination,
                         startDate,
                         endDate,
                         tripDuration,

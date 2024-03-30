@@ -8,6 +8,19 @@ class MyTripsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        //backgroundColor: Colors.green,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        title: Text(
+          '',
+          style: TextStyle(color: Colors.white)
+          ),
+      ),
       body: SafeArea(
         child: Center(
           child: Padding(
@@ -20,7 +33,7 @@ class MyTripsPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 40),
                 const Text(
-                  "Explore your journey \n with us",
+                  "Plan Your Next Journey \n With Us",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 26,
@@ -29,7 +42,7 @@ class MyTripsPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 const Text(
-                  "All your vacations destinations are here,\nenjoy your holiday",
+                  "Just a few simple taps,\nenjoy your holiday",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.black54,
@@ -53,7 +66,7 @@ class MyTripsPage extends StatelessWidget {
                             );
                           },
                           style: ElevatedButton.styleFrom(
-                            foregroundColor: Colors.white, backgroundColor: Colors.blue,
+                            foregroundColor: Colors.white, backgroundColor: Colors.green,
                             elevation: 0,
                             shape: const StadiumBorder(),
                             padding: const EdgeInsets.symmetric(
@@ -77,7 +90,7 @@ class MyTripsPage extends StatelessWidget {
                             );
                           },
                           style: ElevatedButton.styleFrom(
-                            foregroundColor: Colors.white, backgroundColor: Colors.blue,
+                            foregroundColor: Colors.white, backgroundColor: Colors.green,
                             elevation: 0,
                             shape: const StadiumBorder(),
                             padding: const EdgeInsets.symmetric(
