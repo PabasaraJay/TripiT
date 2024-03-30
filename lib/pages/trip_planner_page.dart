@@ -59,7 +59,11 @@ class _TripPlannerPageState extends State<TripPlannerPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Trip Planner'),
+        title: Text(
+          'Trip Planner',
+          style: TextStyle(color: Colors.white)
+          ),
+        backgroundColor: Colors.green,
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(20.0),
@@ -75,7 +79,7 @@ class _TripPlannerPageState extends State<TripPlannerPage> {
                 });
               },
               decoration: InputDecoration(
-                hintText: 'Enter your trip name',
+                hintText: 'Enter a Unique Name for Your Trip',
                 border: OutlineInputBorder(),
               ),
             ),

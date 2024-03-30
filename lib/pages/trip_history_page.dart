@@ -36,11 +36,10 @@ class fail_attempt extends State<TripHistoryPage> {
     return MaterialApp(
       home: Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: Color(0xFFDBD6E5),
-        appBar:
-            AppBar(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
           // preferredSize: Size.fromHeight(kToolbarHeight + 20),
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.green,
           leading: IconButton(
             icon: Icon(
               Icons.arrow_back_ios_new_outlined,
@@ -114,10 +113,10 @@ class fail_attempt extends State<TripHistoryPage> {
                         final data = doc.data() as Map<String, dynamic>;
 
                         return Card(
-                          color: Colors.black,
+                          color: Colors.green,
                           child: ListTile(
                             leading: Icon(
-                              Icons.manage_accounts,
+                              Icons.directions,
                               color: Colors.white,
                             ),
                             title: GestureDetector(
@@ -125,8 +124,8 @@ class fail_attempt extends State<TripHistoryPage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => TripDetails(
-                                          cd1: '${data['code']}')),
+                                      builder: (context) =>
+                                          TripDetails(cd1: '${data['code']}')),
                                 );
                                 print('${data['code']}');
                               },
