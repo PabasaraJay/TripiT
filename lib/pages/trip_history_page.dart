@@ -37,25 +37,7 @@ class fail_attempt extends State<TripHistoryPage> {
       home: Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: Color(0xFFDBD6E5),
-        appBar: /* AppBar(
-          leading: IconButton(
-            icon: Icon(
-              Icons.arrow_back_ios_new_outlined,
-              color: Colors.black,
-            ),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-          title: Text(
-            'Other Failed Attempts',
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          backgroundColor: Color(0xFFDBD6E5),
-        ),*/
+        appBar:
             AppBar(
           // preferredSize: Size.fromHeight(kToolbarHeight + 20),
           backgroundColor: Colors.black,
@@ -70,7 +52,7 @@ class fail_attempt extends State<TripHistoryPage> {
           ),
 
           title: Text(
-            'Reservation details',
+            'Your Trip History',
             style: TextStyle(color: Colors.white),
           ),
           iconTheme: IconThemeData(color: Colors.white),
@@ -140,12 +122,6 @@ class fail_attempt extends State<TripHistoryPage> {
                             ),
                             title: GestureDetector(
                               onTap: () {
-                                /*  Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Detailed_Fails(
-                                          failedid: '${data['failedid']}')),
-                                );*/
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -158,7 +134,7 @@ class fail_attempt extends State<TripHistoryPage> {
                                 child: Text(
                                   doc.id,
                                   style: TextStyle(
-                                    color: Colors.pink,
+                                    color: Colors.white,
                                     fontSize: 18.0,
                                   ),
                                 ),

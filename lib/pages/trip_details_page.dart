@@ -86,7 +86,7 @@ String _formatDateAndTime(Timestamp timestamp) {
                   ),
 
                   title: Text(
-                    'Reservation Details',
+                    'Your Trip Details',
                     style: TextStyle(color: Colors.white),
                   ),
                   iconTheme: IconThemeData(color: Colors.white),
@@ -290,17 +290,17 @@ String _formatDateAndTime(Timestamp timestamp) {
                                 ],
                               ),
                             ),
-                           /* Container(
+                            Container(
                               padding: EdgeInsets.only(left: 20),
                               height: 60,
                               width: double.infinity,
-                              color: AppColors.backgroundcolor,
+                              color: Colors.black,
                               child: Row(
                                 //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   Expanded(
                                     child: Text(
-                                      'Activity 3',
+                                      'Trip Name',
                                       style: TextStyle(
                                           fontWeight: FontWeight.w400,
                                           fontSize: 18,
@@ -312,7 +312,7 @@ String _formatDateAndTime(Timestamp timestamp) {
                                   ///place the gemcode variable here
                                   Expanded(
                                     child: Text(
-                                      '${data?['Activity3']}',
+                                      '${data?['TripName']}',
                                       style: TextStyle(
                                           fontWeight: FontWeight.w400,
                                           fontSize: 22,
@@ -322,7 +322,109 @@ String _formatDateAndTime(Timestamp timestamp) {
                                   ),
                                 ],
                               ),
-                            ),*/
+                            ),
+
+                             Container(
+                              padding: EdgeInsets.only(left: 20),
+                              height: 60,
+                              width: double.infinity,
+                              color: Colors.black,
+                              child: Row(
+                                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Expanded(
+                                    child: Text(
+                                      'Destination',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 18,
+                                          height: 2,
+                                          color: Colors.white),
+                                    ),
+                                  ),
+
+                                  ///place the gemcode variable here
+                                  Expanded(
+                                    child: Text(
+                                      '${data?['Destination']}',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 22,
+                                          height: 2,
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                             Container(
+                              padding: EdgeInsets.only(left: 20),
+                              height: 60,
+                              width: double.infinity,
+                              color: Colors.black,
+                              child: Row(
+                                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Expanded(
+                                    child: Text(
+                                      'Trip Duration',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 18,
+                                          height: 2,
+                                          color: Colors.white),
+                                    ),
+                                  ),
+
+                                  ///place the gemcode variable here
+                                  Expanded(
+                                    child: Text(
+                                      '${data?['Duration']}',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 22,
+                                          height: 2,
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                             Container(
+                              padding: EdgeInsets.only(left: 20),
+                              height: 60,
+                              width: double.infinity,
+                              color: Colors.black,
+                              child: Row(
+                                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Expanded(
+                                    child: Text(
+                                      'Total Expenses',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 18,
+                                          height: 2,
+                                          color: Colors.white),
+                                    ),
+                                  ),
+
+                                  ///place the gemcode variable here
+                                  Expanded(
+                                    child: Text(
+                                      '${data?['Total']}',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 22,
+                                          height: 2,
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
 
                             ElevatedButton(
                                 onPressed: () {
