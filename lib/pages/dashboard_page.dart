@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tripit/pages/current_location_page.dart';
+//import 'package:tripit/pages/current_location_page.dart';
 import 'package:tripit/pages/my_trips_page.dart';
 import 'package:tripit/pages/user_location.dart';
 

@@ -15,7 +15,7 @@ class TripDetails extends StatefulWidget {
 
 class _TripDetailsState extends State<TripDetails> {
   GlobalKey globalKey = new GlobalKey();
-  final _firestore = FirebaseFirestore.instance;
+  final firestore = FirebaseFirestore.instance;
   late String code;
 
   @override
