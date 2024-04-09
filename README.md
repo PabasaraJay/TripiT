@@ -5,10 +5,42 @@ TripiT is a versatile mobile travel planner application designed to simplify the
 TripiT is developed by a team of four dedicated members, each bringing their unique expertise to create a seamless travel planning solution. Please see below for the team members' credentials.
 
 ## Team Members
-Member 1
-Member 2
-Member 3
-Member 4
+<table class="styled-table" align="center">
+<thead>
+<tr>
+<th>Member Status</th>
+<th>Registration Number</th>
+<th>Name With Initials</th>
+<th>GitHub Username</th>
+</tr>
+</thead>
+<tbody>
+<tr class=""active-row>
+<td><b>Group Leader</b></td>
+<td>IT21058950</td>
+<td>Jayamanne J.A.P.M.</td>
+<td>PabasaraJay</td>            
+</tr>
+<tr>
+<td>Member 02</td>
+<td>IT21060830</td>
+<td>Rajapaksha R.A.N.M.</td>
+<td>NimeshaR</td>
+</tr>
+<tr>
+<td>Member 03</td>
+<td>IT21023682</td>
+<td>Anjalee P.A.D.L.</td>
+<td>AnjaleeL</td>
+</tr>
+<tr>
+<td>Member 04</td>
+<td>IT2102</td>
+<td> Name</td>
+<td>Username</td>
+</tr>
+</tbody>
+</table>
 
 ## Features
 Itinerary Management: Easily create, view, and manage your travel itineraries.
