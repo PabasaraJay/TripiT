@@ -55,7 +55,7 @@ To deploy TripiT on your local machine, follow these simple steps:
 <ul>
 <li>Clone the repository to your local machine using the command:
 
-    git clone https://github.com/your-username/tripit.git
+    git clone https://github.com/PabasaraJay/TripiT.git
 
 <li>Import the package using Flutter Pub:
 
