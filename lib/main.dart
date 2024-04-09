@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:tripit/firebase_options.dart';
 import 'package:tripit/pages/dashboard_page.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tripit/pages/login_page.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
           Theme.of(context).textTheme,
         ),
       ),
-      home: const DashboardPage(),
+      home: const LoginPage(),
     );
   }
 }
