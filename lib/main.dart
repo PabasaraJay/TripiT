@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       title: 'Travel App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
         textTheme: GoogleFonts.mulishTextTheme(
           Theme.of(context).textTheme,
         ),

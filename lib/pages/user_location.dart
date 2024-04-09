@@ -13,7 +13,7 @@ class _UserLocationPageState extends State<UserLocationPage> {
   late GoogleMapController googleMapController;
 
   static const CameraPosition initialCameraPosition =
-      CameraPosition(target: LatLng(6.914683, 79.973162), zoom: 14.0);
+      CameraPosition(target: LatLng(6.9271, 79.8612), zoom: 14.0);
 
   Set<Marker> markers = {};
 
