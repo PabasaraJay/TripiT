@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:tripit/pages/search_places_page.dart'; // Import the SearchPlacesPage
 
 class UserLocationPage extends StatefulWidget {
   const UserLocationPage({super.key});
@@ -22,10 +23,10 @@ class _UserLocationPageState extends State<UserLocationPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green,
-        title: const Text("Your Location",
-        style: TextStyle(color: Colors.white)
+        title: const Text(
+          "Your Location",
+          style: TextStyle(color: Colors.white),
         ),
-        //centerTitle: true,
       ),
       body: GoogleMap(
         initialCameraPosition: initialCameraPosition,
@@ -36,25 +37,47 @@ class _UserLocationPageState extends State<UserLocationPage> {
           googleMapController = controller;
         },
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () async {
-          Position position = await _determineposition();
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton.extended(
+            onPressed: () async {
+              Position position = await _determineposition();
 
-          googleMapController.animateCamera(CameraUpdate.newCameraPosition(
-              CameraPosition(
-                  target: LatLng(position.latitude, position.longitude),
-                  zoom: 14)));
+              googleMapController.animateCamera(
+                CameraUpdate.newCameraPosition(
+                  CameraPosition(
+                    target: LatLng(position.latitude, position.longitude),
+                    zoom: 14,
+                  ),
+                ),
+              );
 
-                  markers.clear();
-                  markers.add(Marker(markerId: const MarkerId('currentLocation'),position: LatLng(position.latitude, position.longitude)));
+              markers.clear();
+              markers.add(
+                Marker(
+                  markerId: const MarkerId('currentLocation'),
+                  position: LatLng(position.latitude, position.longitude),
+                ),
+              );
 
-                  setState(() {
-                    
-                  });
-
-        },
-        label: const Text("Go To Your Location"),
-        icon: const Icon(Icons.location_history),
+              setState(() {});
+            },
+            label: const Text("Go To Your Location"),
+            icon: const Icon(Icons.location_history),
+          ),
+          SizedBox(height: 10), // Add some spacing between buttons
+          FloatingActionButton.extended(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SearchPlacesPage()),
+              );
+            },
+            label: const Text("Search Places"),
+            icon: const Icon(Icons.search),
+          ),
+        ],
       ),
     );
   }
