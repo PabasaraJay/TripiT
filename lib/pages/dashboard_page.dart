@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 //import 'package:tripit/pages/current_location_page.dart';
 import 'package:tripit/pages/my_trips_page.dart';
+import 'package:tripit/pages/prompt_page.dart';
 import 'package:tripit/pages/user_location.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -64,15 +65,20 @@ class _DashboardPageState extends State<DashboardPage> {
               mainAxisSpacing: 16,
               children: [
                 _buildButton("Your Location", () {
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => const UserLocationPage(),
+                  //   ),
+                  // );
+                }, Icons.location_on),
+                _buildButton("Ai Assistant", () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const UserLocationPage(),
+                      builder: (context) => PromptGeneratorPage(),
                     ),
                   );
-                }, Icons.location_on),
-                _buildButton("Ai Assistant", () {
-                  // Add onPressed action for the second button
                 }, Icons.assistant),
                 _buildButton("Trip Planner", () {
                   // Add onPressed action for the third button
