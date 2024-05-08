@@ -75,7 +75,7 @@ class _promptpageState extends State<promptpage> {
 
   Future<GenerativeModel> _createGenerativeModel() async {
     return GenerativeModel(
-        model: 'gemini-pro', apiKey: 'AIzaSyDClytG49R3ci29q5SnTnkWZom45cVRQ0Q');
+        model: 'gemini-pro', apiKey: '');
   }
 
   @override
