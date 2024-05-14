@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:tripit/pages/my_trips_page.dart';
 import 'package:tripit/pages/trip_history_page.dart';
 import 'package:intl/intl.dart';
+import 'package:tripit/pages/update_trip_page.dart';
 
 class TripDetails extends StatefulWidget {
   final String cd1;
@@ -159,7 +160,13 @@ class _TripDetailsState extends State<TripDetails> {
                         // Edit Button
                         ElevatedButton(
                           onPressed: () {
-                            // Add functionality to edit button
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    UpdateTripDetailsPage(tripId: code),
+                              ),
+                            );
                           },
                           child: Text('Edit'),
                         ),
@@ -181,7 +188,7 @@ class _TripDetailsState extends State<TripDetails> {
                         ),
 
                         SizedBox(height: 10), // Add space between buttons
-                        
+
                         //Home Screen Button
                         ElevatedButton(
                           onPressed: () {

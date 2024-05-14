@@ -16,7 +16,7 @@ class BudgetReportPage extends StatelessWidget {
       int numberOfChildren,
       String selectedTravelingMethod,
       double totalExpenses) async {
-    //meka wadak na ain krhn
+  
     String idd = "$tripName";
     //
 

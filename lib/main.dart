@@ -5,7 +5,7 @@ import 'package:tripit/pages/dashboard_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tripit/pages/login_page.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
           Theme.of(context).textTheme,
         ),
       ),
-      home: const DashboardPage(),
+      home: const LoginPage(),
     );
   }
 }
